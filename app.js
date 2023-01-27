@@ -8,6 +8,7 @@ app.use(express.static("public"))
 
 const port = 3000;
 let items = ["Wake Up", "Pray", "Learn Blockchain"]
+let workItems = []
 
 app.get("/", (req, res) => {
     const today = new Date();
@@ -20,7 +21,7 @@ app.get("/", (req, res) => {
     let day = today.toLocaleDateString("en-US", options);
 
     res.render('list', {
-        KindOfDay: day,
+        listTitle: day,
         newListItems: items
     })
 
@@ -28,8 +29,21 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
     let item = req.body.newItem
-    items.push(item)
-    res.redirect('/')
+
+    if(req.body.list === "Work"){
+        workItems.push(item)
+        res.redirect('/work')
+    } else{
+        items.push(item)
+        res.redirect('/')
+    }
+})
+
+app.get("/work", (req, res) => {
+    res.render('list', {
+        listTitle: "Work List",
+        newListItems: workItems
+    });
 })
 
 app.listen(port, () => {
