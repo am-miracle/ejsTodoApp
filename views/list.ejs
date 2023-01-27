@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejs Todo List</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- <%  if(KindOfDay === "Saturday" || KindOfDay === "Sunday"){ %>
@@ -12,18 +13,23 @@
     <% } else{ %>
             <h1 style="color: purple;"><%= KindOfDay %> Todo List</h1>
     <% } %> -->
-
-    <h1 style="color: blue;"><%= KindOfDay %> Todo List</h1>
-    <ul>
+    <div id="heading" class="box">
+        <h1><%= KindOfDay %> Todo List</h1>
+    </div>
+    <div class="box">
         <% for( let i = 0; i < newListItems.length; i++ ) { %>
-            <li><%= newListItems[i] %></li>
+            <div class="item">
+                <input type="checkbox" [aria-label="checkbox"]>
+                <p class="item"><%= newListItems[i] %></>
+            </div>
         <% } %>
-    </ul>
-    <form action="/" method="post" class="">
-        <label for="todo"></label>
-        <input type="text" name="newItem" id="todo" placeholder="Add Todo">
-        <button type="submit" name="button">Add</button>
-    </form>
+    
+        <form action="/" method="post" class="">
+            <label for="todo"></label>
+            <input type="text" name="newItem" id="todo" placeholder="Add Todo" autocapitalize="off">
+            <button type="submit" name="button">+</button>
+        </form>
+    </div>
 
 </body>
 </html>
