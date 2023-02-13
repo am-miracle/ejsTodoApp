@@ -4,19 +4,31 @@
         <h1><%= listTitle %> Todo List</h1>
     </header>
     <div class="box">
-        <% for( let i = 0; i < newListItems.length; i++ ) { %>
+        <% newListItems.forEach(item => { %>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <div>
+                        <input type="checkbox" name="checkbox" onchange="this.form.submit()" [aria-label="checkbox"] value="<%= item.id %>">
+                        <p> <%= item.name %> </p>
+                    </div>
+                    <!-- <button type="submit" name="delete" onclick="this.form.submit()">-</button> -->
+                    <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+                </div>
+            </form>
+        <% }) %>
+        <!-- <% for( let i = 0; i < newListItems.length; i++ ) { %>
             <div class="item">
                 <input type="checkbox" [aria-label="checkbox"]>
-                <p class="item"><%= newListItems[i] %></>
+                <p class="item"><p%= newListItems[i].name %></p>
             </div>
-        <% } %>
-    
+        <% } %> -->
+
         <form action="/" method="post" class="">
             <label for="todo"></label>
-            <input type="text" name="newItem" id="todo" placeholder="Add Todo" autocapitalize="off">
+            <input type="text" name="newItem" id="todo" placeholder="Add Todo" autocapitalize="off" required>
             <button type="submit" name="list" value=<%= listTitle %>>+</button>
         </form>
     </div>
- <%- include('footer') -%> 
+ <%- include('footer') -%>
 </body>
 </html>
