@@ -9,7 +9,9 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static("public"))
 
-mongoose.connect("mongodb://127.0.0.1:27017/todolistDB");
+
+
+mongoose.connect("mongodb+srv://andreas15:mimi15@cluster0.3iyzvcp.mongodb.net/todolistDB");
 
 
 const itemSchema = {
@@ -38,8 +40,6 @@ const listSchema = {
 const List = mongoose.model("List", listSchema)
 
 const port = 3000;
-// let items = ["Wake Up", "Pray", "Learn Blockchain"]
-let workItems = []
 
 app.get("/", (req, res) => {
 
