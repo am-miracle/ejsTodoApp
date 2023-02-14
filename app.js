@@ -9,9 +9,9 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static("public"))
 
+dotenv.config({ path: '.env' });
 
-
-mongoose.connect("mongodb+srv://andreas15:mimi15@cluster0.3iyzvcp.mongodb.net/todolistDB");
+mongoose.connect(process.env.CONNECTION_URL);
 
 
 const itemSchema = {
